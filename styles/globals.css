@@ -89,3 +89,8 @@ p {
   font-weight: var(--light);
   font-size: 1rem;
 }
+
+/* shadows */
+.shadow-1 {
+  box-shadow: 2px 4px 2px #00000033;
+}
