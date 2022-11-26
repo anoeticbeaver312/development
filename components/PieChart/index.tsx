@@ -9,7 +9,11 @@ interface PieChartProps {
   segments: Map<string, { num: number, color: string }>;
 }
 
+/**
+  * A piechart component that uses SVG and can render an arbitrary number of segments.
+  */
 function PieChart(props: PieChartProps) {
+  // dynamically get the total number of items in the data to calculate percentages
   const [total, setTotal] = useState(0);
   // map segment names to their corresponding stroke dash array
   const [percentages, setPercentages] = useState<Map<string, string>>(new Map());
@@ -28,7 +32,10 @@ function PieChart(props: PieChartProps) {
     for (const [key, value] of props.segments) {
       const percentage = value.num / total;
       const arcLength = percentage * circumference;
-      newPercentages.set(key, `${cumulativeArcLength + arcLength} ${circumference}`);
+      // set the stroke dash array: "<dash segment length> <gap between segments>"
+      // subtract from circumference so the SVG circle elements are drawn in the correct order, laying on top of each other
+      // correctly (largest first, so it gets covered up by the following segments)
+      newPercentages.set(key, `${circumference - cumulativeArcLength} ${circumference}`);
       cumulativeArcLength += arcLength;
     }
     setPercentages(newPercentages);
@@ -37,9 +44,9 @@ function PieChart(props: PieChartProps) {
   return (
     <svg className={styles.svg} viewBox="0 0 100 100">
       {[...percentages.keys()]
-        .reverse().map((key: string, index: number) =>
+        .map((key: string, index: number) =>
           <circle className={styles.circle} key={index} cx="50" cy="50" r={radius / 2}
-            fill="none" stroke={props.segments.get(key)?.color}
+            fill="none" stroke={props.segments.has(key) ? props.segments.get(key)?.color : "none"}
             strokeWidth={radius / 2} strokeDasharray={percentages.get(key)}></circle>)}
     </svg>
   )

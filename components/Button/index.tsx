@@ -1,4 +1,3 @@
-import { JsxElement } from "typescript";
 import styles from "./Button.module.css";
 
 interface ButtonProps {

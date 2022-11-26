@@ -3,6 +3,7 @@
 }
 
 .circle {
+  /* rotate the pie chart so 50/50 splits are shown vertical */
   transform: rotate(90deg);
   transform-origin: center;
 }
