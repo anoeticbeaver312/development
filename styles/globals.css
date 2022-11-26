@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap');
+
 :root {
+  /* colors */
   --blue-1: #0D004D;
   --blue-2: #080891;
   --blue-3: #0022CC;
@@ -11,4 +14,89 @@
   --black: #2B2525;
 
   --white: #fff;
+
+  /* typography */
+  --lighter: 100;
+  --light: 300;
+  --regular: 500;
+  --bold: 700;
+  --bolder: 900;
+
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: var(--bold);
+  font-size: 6rem;
+
+  color: var(--blue-1);
+
+  letter-spacing: -0.05rem;
+}
+
+h2 {
+  font-weight: var(--bold);
+  font-size: 3.75rem;
+
+  color: var(--blue-2);
+
+  letter-spacing: -0.05rem;
+}
+
+h3 {
+  font-weight: var(--regular);
+  font-size: 2rem;
+
+  color: var(--blue-2);
+}
+
+h4 {
+  font-weight: var(--regular);
+  font-size: 1.25rem;
+
+  color: var(--blue-3);
+}
+
+p.subtitle {
+  font-weight: var(--regular);
+  font-size: 1rem;
+
+  color: var(--black);
+
+  letter-spacing: 0.05rem;
+}
+
+p.button {
+  font-weight: var(--regular);
+  font-size: 0.875rem;
+
+  color: var(--black);
+
+  letter-spacing: 0.1rem;
+}
+
+p.caption {
+  font-weight: var(--light);
+  font-size: 0.875rem;
+
+  color: var(--black);
+
+  letter-spacing: 0.1rem;
+}
+
+p {
+  font-weight: var(--light);
+  font-size: 1rem;
+
+  color: var(--black);
 }
