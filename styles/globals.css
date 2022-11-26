@@ -24,10 +24,15 @@
 
   font-family: Inter, sans-serif;
   font-size: 1rem;
+
+  color: var(--black);
 }
 
 * {
   box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
 }
 
 body, html {
@@ -39,8 +44,6 @@ h1 {
   font-weight: var(--bold);
   font-size: 6rem;
 
-  color: var(--blue-1);
-
   letter-spacing: -0.05rem;
 }
 
@@ -48,30 +51,22 @@ h2 {
   font-weight: var(--bold);
   font-size: 3.75rem;
 
-  color: var(--blue-2);
-
   letter-spacing: -0.05rem;
 }
 
 h3 {
   font-weight: var(--regular);
   font-size: 2rem;
-
-  color: var(--blue-2);
 }
 
 h4 {
   font-weight: var(--regular);
   font-size: 1.25rem;
-
-  color: var(--blue-3);
 }
 
 p.subtitle {
   font-weight: var(--regular);
   font-size: 1rem;
-
-  color: var(--black);
 
   letter-spacing: 0.05rem;
 }
@@ -80,8 +75,6 @@ p.button {
   font-weight: var(--regular);
   font-size: 0.875rem;
 
-  color: var(--black);
-
   letter-spacing: 0.1rem;
 }
 
@@ -89,14 +82,10 @@ p.caption {
   font-weight: var(--light);
   font-size: 0.875rem;
 
-  color: var(--black);
-
   letter-spacing: 0.1rem;
 }
 
 p {
   font-weight: var(--light);
   font-size: 1rem;
-
-  color: var(--black);
 }
