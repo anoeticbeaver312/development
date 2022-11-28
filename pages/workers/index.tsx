@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import Button from "../../components/input/Button";
 import Flex from "../../components/layout/Flex";
 import Table from "../../components/layout/Table";
 import DefaultHead from "../../components/page-elements/DefaultHead";
 import Header from "../../components/page-elements/Header";
 import WorkerListMenu from "../../components/page-elements/WorkerListMenu";
-import * as ri from "react-icons/ri";
 
 export default function Workers() {
   const [workers, setWorkers] = useState<Array<Array<string>>>([])
@@ -16,8 +14,17 @@ export default function Workers() {
     setWorkers(prevWorkers => prevWorkers.filter((_, i: number) => i !== index));
   }
 
+  const handleAddRow = (newData: Array<string>) => {
+    const newDataIsEmpty = newData.reduce((prev, curr) => curr === "" && prev, true);
+    if (newDataIsEmpty) {
+      return;
+    }
+    const oldWorkers = Array.from(workers);
+    oldWorkers.push(newData);
+    setWorkers(oldWorkers);
+  }
+
   useEffect(() => {
-    console.log("Resetting workers")
     setWorkers([
       ["Ron Swanson", "Quality Assurance", "Unclaimed", ""],
       ["Priti Naiv", "DevOps", "Unclaimed", ""],
@@ -33,8 +40,7 @@ export default function Workers() {
       <Flex gap="gapLarge" padding>
         <WorkerListMenu lists={["Master"]} />
         <Flex direction="column" gap="gapLarge">
-          <Table headers={headers} data={workers} handleDeleteRow={handleDeleteRow} handleAddRow={(data) => console.log("Adding")} />
-          <Button text="Add a Worker" type="normal" icon={<ri.RiAddLine />} />
+          <Table headers={headers} data={workers} handleDeleteRow={handleDeleteRow} handleAddRow={handleAddRow} addRowText="Add a Worker" />
         </Flex>
       </Flex>
     </div>
