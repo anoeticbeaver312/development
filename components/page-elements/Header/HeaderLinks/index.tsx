@@ -8,7 +8,7 @@ function HeaderLinks() {
   const router = useRouter();
 
   return (
-    <Flex alignItems="alignCenter" gap>
+    <Flex alignItems="alignCenter" gap="gapMedium">
       <Link className={styles.link} href="/"><ri.RiHome2Line /><span className={router.pathname === "/" ? styles.underline : ""}>Dashboard</span></Link>
       <Link className={styles.link} href="/workers"><ri.RiHammerLine /><span className={router.pathname === "/workers" ? styles.underline : ""}>Worker Lists</span></Link>
     </Flex>

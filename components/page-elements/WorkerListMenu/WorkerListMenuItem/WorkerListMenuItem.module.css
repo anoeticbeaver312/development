@@ -1,0 +1,15 @@
+.item {
+  padding: 1rem 1.5rem;
+
+  cursor: pointer;
+}
+
+.item.selected {
+  background-color: var(--grayscale-1);
+
+  border-radius: 4px;
+}
+
+.crown {
+  color: var(--orange-1);
+}

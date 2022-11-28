@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flexContainer.column {
+  flex-direction: column;
+}
+
 .flexContainer.alignCenter {
   align-items: center;
 }
@@ -34,6 +38,18 @@
   justify-content: space-between;
 }
 
-.flexContainer.gap {
+.flexContainer.gapSmall {
+  gap: 0.5rem;
+}
+
+.flexContainer.gapMedium {
   gap: 1rem;
+}
+
+.flexContainer.gapLarge {
+  gap: 2rem;
+}
+
+.flexContainer.padding {
+  padding: 1.5rem;
 }

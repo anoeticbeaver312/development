@@ -1,0 +1,33 @@
+.table {
+  border-collapse: collapse;
+  border: 1px solid var(--grayscale-1);
+
+  font-size: 1rem;
+  font-weight: var(--light);
+}
+
+.table thead {
+  background-color: var(--grayscale-1);
+}
+
+.table tr {
+  position: relative;
+}
+
+.table td, .table th {
+  position: relative;
+  
+  padding: 0.4rem;
+  text-align: left;
+
+  border: 1px solid var(--grayscale-2);
+
+  min-width: 10rem;
+}
+
+.delete {
+  position: absolute;
+  right: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
