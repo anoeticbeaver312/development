@@ -1,12 +1,14 @@
-import Head from 'next/head'
+import Link from 'next/link'
+import DefaultHead from '../components/page-elements/DefaultHead'
+import Header from '../components/page-elements/Header'
 
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>Development App</title>
-        <meta name="description" content="Development app" />
-      </Head>
+      <DefaultHead />
+      <Header />
+      <h1>A work in progress</h1>
+      <Link href="/workers">Go to workers lists</Link>
     </div>
   )
 }

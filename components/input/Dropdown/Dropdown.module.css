@@ -1,0 +1,13 @@
+.dropdown {
+  width: min-content;
+  height: 3rem;
+
+  background-color: white;
+
+  border: 2px solid var(--grayscale-1);
+  border-radius: 4px;
+
+  padding: 0 1rem;
+
+  font-size: 1rem;
+}

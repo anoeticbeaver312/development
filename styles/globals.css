@@ -9,7 +9,11 @@
   --orange-1: #FFAA51;
   --orange-2: #FFD37A;
 
+  --red-1: #FF5151;
+  --red-2: #FF7A7A;
+
   --grayscale-1: #E7E4E4;
+  --grayscale-2: #D7D4D4;
 
   --black: #2B2525;
 
@@ -88,4 +92,28 @@ p.caption {
 p {
   font-weight: var(--light);
   font-size: 1rem;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+
+  padding: 0.2rem 0.4rem;
+
+  border-radius: 4px;
+
+  text-decoration: none;
+  color: inherit;
+
+  transition: all 0.2s;
+}
+
+a:hover {
+  background-color: var(--grayscale-1);
+}
+
+/* shadows */
+.shadow-1 {
+  box-shadow: 2px 4px 2px #00000033;
 }
