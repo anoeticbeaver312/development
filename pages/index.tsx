@@ -58,22 +58,22 @@ export default function Workers() {
 
   useEffect(() => {
     setWorkers([
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Ron Swanson", "Quality Assurance", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Priti Naiv", "DevOps", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Felicity Bryer", "Engineering", "Signed Authorization Card", "John Dean"],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Gandalf", "Engineering", "Claimed", "John Dean"],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Rich Harris", "Janitorial Squad", "Claimed", "Rick Sanchez"],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Lulu", "Janitorial Squad", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Seagull Marvin", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Pancake Tony", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Magoi Dude", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Mark Whifflebat", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Stinging Seaslug", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Plug Me In", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Lark Top", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "McElligot's Pool", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Space Engineer", "Engineering", "Unclaimed", ""],
-      ["https://c.neevacdn.net/image/fetch/s--_g1GSMnj--/https%3A//images3.wikia.nocookie.net/__cb20110702010036/studio-ghibli/images/1/1b/Howl.png?savepath=Howl.png", "Riggotoni Larry", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Ron Swanson", "Quality Assurance", "Unclaimed", ""],
+      ["/howl.jpg", "Priti Naiv", "DevOps", "Unclaimed", ""],
+      ["/howl.jpg", "Felicity Bryer", "Engineering", "Signed Authorization Card", "John Dean"],
+      ["/howl.jpg", "Gandalf", "Engineering", "Claimed", "John Dean"],
+      ["/howl.jpg", "Rich Harris", "Janitorial Squad", "Claimed", "Rick Sanchez"],
+      ["/howl.jpg", "Lulu", "Janitorial Squad", "Unclaimed", ""],
+      ["/howl.jpg", "Seagull Marvin", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Pancake Tony", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Magoi Dude", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Mark Whifflebat", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Stinging Seaslug", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Plug Me In", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Lark Top", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "McElligot's Pool", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Space Engineer", "Engineering", "Unclaimed", ""],
+      ["/howl.jpg", "Riggotoni Larry", "Engineering", "Unclaimed", ""],
     ])
   }, [])
 
