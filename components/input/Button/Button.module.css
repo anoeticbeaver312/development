@@ -24,3 +24,7 @@
 .button.normal {
   background-color: var(--blue-2);
 }
+
+.button.warning {
+  background-color: var(--red-1);
+}

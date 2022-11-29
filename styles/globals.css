@@ -9,6 +9,9 @@
   --orange-1: #FFAA51;
   --orange-2: #FFD37A;
 
+  --red-1: #FF5151;
+  --red-2: #FF7A7A;
+
   --grayscale-1: #E7E4E4;
   --grayscale-2: #D7D4D4;
 
@@ -107,8 +110,7 @@ a {
 }
 
 a:hover {
-  background-color: var(--blue-2);
-  color: white;
+  background-color: var(--grayscale-1);
 }
 
 /* shadows */

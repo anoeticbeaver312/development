@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Dropdown from "../../components/input/Dropdown";
+import TextField from "../../components/input/TextField";
 import Flex from "../../components/layout/Flex";
 import Table from "../../components/layout/Table";
 import DefaultHead from "../../components/page-elements/DefaultHead";
@@ -7,8 +9,12 @@ import WorkerListMenu from "../../components/page-elements/WorkerListMenu";
 
 export default function Workers() {
   const [workers, setWorkers] = useState<Array<Array<string>>>([])
+  const [filterValue, setFilterValue] = useState("");
+  const [filterColumn, setFilterColumn] = useState("Name");
+  const [filteredWorkers, setFilteredWorkers] = useState<Array<Array<string>>>([])
 
   const headers = ["Name", "Department", "Status", "Claimed By"]
+  const headerOptions = new Map(headers.map(header => [header, header]))
 
   const handleDeleteRow = (index: number) => {
     setWorkers(prevWorkers => prevWorkers.filter((_, i: number) => i !== index));
@@ -23,6 +29,16 @@ export default function Workers() {
     oldWorkers.push(newData);
     setWorkers(oldWorkers);
   }
+
+  useEffect(() => {
+    setFilteredWorkers(workers);
+  }, [workers])
+
+  useEffect(() => {
+    setFilteredWorkers(workers.filter(worker => {
+      return worker[headers.findIndex(header => header === filterColumn)].includes(filterValue);
+    }));
+  }, [filterValue, filterColumn])
 
   useEffect(() => {
     setWorkers([
@@ -40,7 +56,11 @@ export default function Workers() {
       <Flex gap="gapLarge" padding>
         <WorkerListMenu lists={["Master"]} />
         <Flex direction="column" gap="gapLarge">
-          <Table headers={headers} data={workers} handleDeleteRow={handleDeleteRow} handleAddRow={handleAddRow} addRowText="Add a Worker" />
+          <Flex gap="gapMedium">
+            <TextField label="Search" placeholder="Search..." defaultValue={filterValue} handleOnChange={(newValue: string) => setFilterValue(newValue)} />
+            <Dropdown label="By" options={headerOptions} defaultValue={filterColumn} handleOnChange={(newValue: string) => setFilterColumn(newValue)} />
+          </Flex>
+          <Table headers={headers} data={filteredWorkers} handleDeleteRow={handleDeleteRow} handleAddRow={handleAddRow} addRowText="Add a Worker" />
         </Flex>
       </Flex>
     </div>

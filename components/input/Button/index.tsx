@@ -2,7 +2,7 @@ import styles from "./Button.module.css";
 
 interface ButtonProps {
   text: string;
-  type: "normal";
+  type: "normal" | "warning";
   icon?: React.ReactElement;
   handleOnClick: () => void;
 }

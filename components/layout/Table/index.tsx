@@ -37,7 +37,7 @@ function Table(props: TableProps) {
 
   useEffect(() => {
     setNewRow(props.data.map(_ => ""))
-  }, [props.data])
+  }, [props.data, newRowOpen])
 
   return (
     <Flex direction="column" gap="gapMedium">
@@ -54,7 +54,7 @@ function Table(props: TableProps) {
           {newRowOpen ? <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td><input value={newRow[i]} placeholder={`New ${props.headers[i]}`} type="text" onChange={event => updateNewRow(event.target.value, i)} /></td>) : null}</tr> : null}
         </tbody>
       </table >
-      {!newRowOpen ? <Button text={props.addRowText} type="normal" icon={<ri.RiAddLine />} handleOnClick={() => setNewRowOpen(true)} /> : null}
+      {!newRowOpen ? <Button text={props.addRowText} type="normal" icon={<ri.RiAddLine />} handleOnClick={() => setNewRowOpen(true)} /> : <Button text="Cancel" type="warning" icon={<ri.RiCloseLine />} handleOnClick={() => setNewRowOpen(false)} />}
     </Flex>
   )
 }
