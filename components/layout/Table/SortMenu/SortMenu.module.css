@@ -1,0 +1,4 @@
+.sortItem:hover {
+  cursor: pointer;
+  background-color: var(--grayscale-1);
+}

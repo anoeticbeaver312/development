@@ -41,4 +41,15 @@
   transform: translateY(-50%);
 
   cursor: pointer;
+
+  color: var(--red-1);
+}
+
+.sort {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 10;
 }

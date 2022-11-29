@@ -3,6 +3,7 @@ import * as ri from "react-icons/ri";
 import Flex from "../Flex";
 import Button from "../../input/Button";
 import { useEffect, useState } from "react";
+import SortMenu from "./SortMenu";
 
 interface TableProps {
   // the headers of the table
@@ -18,6 +19,7 @@ interface TableProps {
 }
 
 function Table(props: TableProps) {
+  const [headersSort, setHeadersSort] = useState<{ header: string, direction: 1 | -1 }>();
   const [newRowOpen, setNewRowOpen] = useState(false);
   const [newRow, setNewRow] = useState<Array<string>>([])
 
@@ -36,7 +38,7 @@ function Table(props: TableProps) {
   }
 
   useEffect(() => {
-    setNewRow(props.data.map(_ => ""))
+    setNewRow(props.data.map(_ => ""));
   }, [props.data, newRowOpen])
 
   return (
@@ -44,7 +46,12 @@ function Table(props: TableProps) {
       <table className={styles.table}>
         <thead>
           <tr>
-            {props.headers.map((header: string) => <th>{header}</th>)}
+            {props.headers.map((header: string) => <th>
+              {header}
+              <div className={styles.sort}>
+                <SortMenu handleSortAscending={() => setHeadersSort({ header: header, direction: 1 })} handleSortDescending={() => setHeadersSort({ header: header, direction: -1 })} />
+              </div>
+            </th>)}
           </tr>
         </thead>
         <tbody>

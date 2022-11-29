@@ -7,13 +7,14 @@ interface FlexProps {
   alignItems?: "alignCenter" | "alignStart" | "alignEnd";
   justifyContent?: "justyCenter" | "justifyStart" | "justifyEnd" | "justifyAround" | "justifyBetween";
   children: React.ReactNode;
-  styling?: string;
+  classes?: string;
+  styling?: { [style: string]: string };
   handleOnClick?: () => void;
 }
 
 function Flex(props: FlexProps) {
   return (
-    <div onClick={() => props.handleOnClick ? props.handleOnClick() : {}} className={`${styles.flexContainer} ${props.padding ? styles.padding : ""} ${styles[props.direction ?? ""] ?? ""} ${styles[props.gap ?? ""] ?? ""} ${styles[props.alignItems ?? ""] ?? ""} ${styles[props.justifyContent ?? ""] ?? ""} ${props.styling ?? ""}`}>
+    <div onClick={() => props.handleOnClick ? props.handleOnClick() : {}} style={props.styling ?? {}} className={`${styles.flexContainer} ${props.padding ? styles.padding : ""} ${styles[props.direction ?? ""] ?? ""} ${styles[props.gap ?? ""] ?? ""} ${styles[props.alignItems ?? ""] ?? ""} ${styles[props.justifyContent ?? ""] ?? ""} ${props.classes ?? ""}`}>
       {props.children}
     </div>
   )
