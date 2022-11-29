@@ -21,8 +21,6 @@
   text-align: left;
 
   border: 1px solid var(--grayscale-2);
-
-  min-width: 10rem;
 }
 
 .table input {
@@ -36,9 +34,9 @@
 
 .delete {
   position: absolute;
-  right: 0.2rem;
+  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(200%);
 
   cursor: pointer;
 
@@ -52,4 +50,19 @@
   transform: translateY(-50%);
 
   z-index: 10;
+}
+
+.imageContainer {
+  width: 5rem;
+  height: 5rem;
+
+  border-radius: 100%;
+
+  overflow: hidden;
+}
+
+.table img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }

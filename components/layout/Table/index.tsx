@@ -2,12 +2,12 @@ import styles from "./Table.module.css";
 import * as ri from "react-icons/ri";
 import Flex from "../Flex";
 import Button from "../../input/Button";
-import { useEffect, useState } from "react";
+import React, {Dispatch, useEffect, useState} from "react";
 import SortMenu from "./SortMenu";
 
 interface TableProps {
   // the headers of the table
-  headers: Array<string>;
+  headers: Array<{ name: string, type: "text" | "image" }>;
   // the rows of the table
   data: Array<Array<string>>;
   // handle deleting a row from the data
@@ -16,6 +16,8 @@ interface TableProps {
   handleAddRow: (newRowData: Array<string>) => void;
   // text to display in the button for adding a row
   addRowText: string
+  setSortOn: Dispatch<boolean>;
+  sortOn: boolean;
 }
 
 function Table(props: TableProps) {
@@ -37,31 +39,71 @@ function Table(props: TableProps) {
     }
   }
 
+  const sortWorkers = (worker1: Array<string>, worker2: Array<string>) => {
+    if (!headersSort) {
+      return 0;
+    }
+    const headerIndex = props.headers.findIndex(header => header.name === headersSort.header);
+    const worker1Value = worker1[headerIndex];
+    const worker2Value = worker2[headerIndex];
+    return worker1Value.localeCompare(worker2Value) * headersSort.direction;
+  }
+
   useEffect(() => {
     setNewRow(props.data.map(_ => ""));
   }, [props.data, newRowOpen])
+
+  useEffect(() => {
+    console.log("Sort on:", props.sortOn)
+    if (!props.sortOn) {
+      setHeadersSort(undefined);
+    }
+  }, [props.sortOn])
 
   return (
     <Flex direction="column" gap="gapMedium">
       <table className={styles.table}>
         <thead>
-          <tr>
-            {props.headers.map((header: string) => <th>
-              {header}
+        <tr>
+          {props.headers.map((header) => <th>
+            {header.name}
+            {header.type !== "image" ?
               <div className={styles.sort}>
-                <SortMenu handleSortAscending={() => setHeadersSort({ header: header, direction: 1 })} handleSortDescending={() => setHeadersSort({ header: header, direction: -1 })} />
-              </div>
-            </th>)}
-          </tr>
+                <SortMenu handleSortAscending={() => {
+                  setHeadersSort({header: header.name, direction: 1})
+                  props.setSortOn(true);
+                }} handleSortDescending={() => {
+                  setHeadersSort({header: header.name, direction: -1})
+                  props.setSortOn(true);
+                }}/>
+              </div> : null
+            }
+          </th>)}
+        </tr>
         </thead>
         <tbody>
-          {props.data.map((row: Array<string>, i: number) => <tr key={i}>
-            {row.map((datum: string, index: number) => <td key={row.length + (row.length * i + index)}>{datum} {index === row.length - 1 ? <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)} /> : null}</td>)}
-          </tr>)}
-          {newRowOpen ? <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td><input value={newRow[i]} placeholder={`New ${props.headers[i]}`} type="text" onChange={event => updateNewRow(event.target.value, i)} /></td>) : null}</tr> : null}
+        {props.sortOn ? Array.from(props.data).sort(sortWorkers).map((row: Array<string>, i: number) => <tr key={i}>
+          {row.map((datum: string, index: number) =>
+            <td key={i}>{props.headers[index].type === "text" ? datum :
+              <div className={styles.imageContainer}><img src={datum}/></div>} {index === row.length - 1 ?
+              <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
+            </td>)}
+        </tr>) : props.data.map((row: Array<string>, i: number) => <tr key={i}>
+          {row.map((datum: string, index: number) =>
+            <td key={i}>{props.headers[index].type === "text" ? datum :
+              <div className={styles.imageContainer}><img src={datum}/></div>} {index === row.length - 1 ?
+              <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
+            </td>)}
+        </tr>)}
+        {newRowOpen ?
+          <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td><input
+            value={newRow[i]} placeholder={`New ${props.headers[i].name}`} type="text"
+            onChange={event => updateNewRow(event.target.value, i)}/></td>) : null}</tr> : null}
         </tbody>
-      </table >
-      {!newRowOpen ? <Button text={props.addRowText} type="normal" icon={<ri.RiAddLine />} handleOnClick={() => setNewRowOpen(true)} /> : <Button text="Cancel" type="warning" icon={<ri.RiCloseLine />} handleOnClick={() => setNewRowOpen(false)} />}
+      </table>
+      {!newRowOpen ? <Button text={props.addRowText} type="normal" icon={<ri.RiAddLine/>}
+                             handleOnClick={() => setNewRowOpen(true)}/> :
+        <Button text="Cancel" type="warning" icon={<ri.RiCloseLine/>} handleOnClick={() => setNewRowOpen(false)}/>}
     </Flex>
   )
 }
