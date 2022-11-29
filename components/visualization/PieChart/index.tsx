@@ -40,12 +40,12 @@ function PieChart(props: PieChartProps) {
       cumulativeArcLength += arcLength;
     }
     setPercentages(newPercentages);
-  }, [total, props.segments])
+  }, [circumference, total, props.segments])
 
   return (
     <div>
-      {[...props.segments.keys()].map(segment =>
-        <div style={{color: props.segments.get(segment)?.color}}>{segment}</div>)}
+      {[...props.segments.keys()].map((segment, i) =>
+        <div key={`key-${i}`} style={{color: props.segments.get(segment)?.color}}>{segment}</div>)}
       <svg className={styles.svg} viewBox="0 0 100 100">
         {[...percentages.keys()]
           .map((key: string, index: number) =>

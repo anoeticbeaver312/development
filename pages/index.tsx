@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useMemo, useEffect, useState} from "react";
 import Dropdown from "../components/input/Dropdown";
 import TextField from "../components/input/TextField";
 import Flex from "../components/layout/Flex";
@@ -17,15 +17,15 @@ export default function Workers() {
   const [sortOn, setSortOn] = useState(true);
   const [statusSegments, setStatusSegments] = useState<Map<string, { num: number, color: string }>>(new Map())
 
-  const headers: Array<{ name: string, type: "image" | "text" }> = [
+  const headers: Array<{ name: string, type: "image" | "text" }> = useMemo(() => [
     {name: "", type: "image"},
     {name: "Name", type: "text"},
     {name: "Department", type: "text"},
     {name: "Status", type: "text"},
     {name: "Claimed By", type: "text"}
-  ]
+  ], [])
   const headerOptions = new Map(headers.filter(header => header.type === "text").map(header => [header.name, header.name]))
-  const colors = ["green", "blue", "red"]
+  const colors = useMemo(() => ["green", "blue", "red"], [])
 
   const handleDeleteRow = (index: number) => {
     setWorkers(prevWorkers => prevWorkers.filter((_, i: number) => i !== index));
@@ -44,7 +44,7 @@ export default function Workers() {
   useEffect(() => {
     const unique = Array.from(new Set(workers.map(worker => worker[3])))
     setStatusSegments(new Map(unique.map((u, i) => [u, {num: workers.reduce((prev, curr) => (curr[3] === u ? 1 : 0) + prev, 0), color: colors[i]}])))
-  }, [workers])
+  }, [colors, workers])
 
   useEffect(() => {
     setFilteredWorkers(workers);
@@ -54,7 +54,7 @@ export default function Workers() {
     setFilteredWorkers(workers.filter(worker => {
       return worker[headers.findIndex(header => header.name === filterColumn)].includes(filterValue);
     }));
-  }, [filterValue, filterColumn])
+  }, [headers, workers, filterValue, filterColumn])
 
   useEffect(() => {
     setWorkers([

@@ -1,4 +1,5 @@
 import styles from "./Table.module.css";
+import Image from "next/image";
 import * as ri from "react-icons/ri";
 import Flex from "../Flex";
 import Button from "../../input/Button";
@@ -65,7 +66,7 @@ function Table(props: TableProps) {
       <table className={styles.table}>
         <thead>
         <tr>
-          {props.headers.map((header) => <th>
+          {props.headers.map((header, i) => <th key={i}>
             {header.name}
             {header.type !== "image" ?
               <div className={styles.sort}>
@@ -85,18 +86,18 @@ function Table(props: TableProps) {
         {props.sortOn ? Array.from(props.data).sort(sortWorkers).map((row: Array<string>, i: number) => <tr key={i}>
           {row.map((datum: string, index: number) =>
             <td key={i}>{props.headers[index].type === "text" ? datum :
-              <div className={styles.imageContainer}><img src={datum}/></div>} {index === row.length - 1 ?
+              <div className={styles.imageContainer}><Image alt="Profile Image" src={datum}/></div>} {index === row.length - 1 ?
               <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
             </td>)}
-        </tr>) : props.data.map((row: Array<string>, i: number) => <tr key={i}>
+        </tr>) : props.data.map((row: Array<string>, i: number) => <tr key={`row-${i}`}>
           {row.map((datum: string, index: number) =>
-            <td key={i}>{props.headers[index].type === "text" ? datum :
-              <div className={styles.imageContainer}><img src={datum}/></div>} {index === row.length - 1 ?
+            <td key={`cell-${row.length * i + index}`}>{props.headers[index].type === "text" ? datum :
+              <div className={styles.imageContainer}><Image alt="Profile Image" src={datum}/></div>} {index === row.length - 1 ?
               <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
             </td>)}
         </tr>)}
         {newRowOpen ?
-          <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td><input
+          <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td key={`new-row-${i}`}><input
             value={newRow[i]} placeholder={`New ${props.headers[i].name}`} type="text"
             onChange={event => updateNewRow(event.target.value, i)}/></td>) : null}</tr> : null}
         </tbody>

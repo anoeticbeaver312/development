@@ -16,8 +16,8 @@ function Dropdown(props: DropdownProps) {
         {props.label}
       </label>
       <select value={props.defaultValue} className={styles.dropdown} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => props.handleOnChange(event.target.value)}>
-        {[...props.options.keys()].map((displayValue: string) =>
-          <option value={props.options.get(displayValue)}>{displayValue}</option>)}
+        {[...props.options.keys()].map((displayValue: string, i: number) =>
+          <option key={i} value={props.options.get(displayValue)}>{displayValue}</option>)}
       </select>
     </Flex>
   )

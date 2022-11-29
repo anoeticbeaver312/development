@@ -13,7 +13,7 @@ function WorkerListMenu(props: WorkerListMenuProps) {
   return (
     <Flex direction="column" gap="gapMedium">
       <h3>All Lists</h3>
-      {props.lists.map((listName: string) => <WorkerListMenuItem name={listName} handleOnClick={() => setSelectedList(listName)} selected={selectedList === listName} />)}
+      {props.lists.map((listName: string, i: number) => <WorkerListMenuItem key={i} name={listName} handleOnClick={() => setSelectedList(listName)} selected={selectedList === listName} />)}
     </Flex>
   )
 }
