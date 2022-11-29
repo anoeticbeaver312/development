@@ -1,0 +1,8 @@
+.sortItem:hover {
+  cursor: pointer;
+  background-color: var(--grayscale-1);
+}
+
+.dropdown {
+  cursor: pointer;
+}

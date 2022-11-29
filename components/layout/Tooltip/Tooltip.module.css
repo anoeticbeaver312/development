@@ -1,0 +1,16 @@
+.tooltip {
+  position: absolute;
+  z-index: 10;
+
+  width: max-content;
+
+  padding: 1rem;
+
+  background-color: white;
+
+  border-radius: 4px;
+}
+
+.inactive {
+  display: none;
+}

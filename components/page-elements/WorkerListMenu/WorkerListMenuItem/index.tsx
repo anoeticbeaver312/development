@@ -11,7 +11,7 @@ interface WorkerListMenuItemProps {
 
 function WorkerListMenuItem(props: WorkerListMenuItemProps) {
   return (
-    <Flex gap="gapSmall" alignItems="alignCenter" handleOnClick={props.handleOnClick} styling={`${styles.item} ${props.selected ? styles.selected : ""}`}>
+    <Flex gap="gapSmall" alignItems="alignCenter" handleOnClick={props.handleOnClick} classes={`${styles.item} ${props.selected ? styles.selected : ""}`}>
       {props.name === "Master" ? <ri.RiVipCrownLine className={styles.crown} /> : <></>}
       <p>{props.name}</p>
     </Flex>

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "./PieChart.module.css";
+import Flex from "../../layout/Flex";
 
 interface PieChartProps {
   // the name of the metric, e.g., "auth signatures"
@@ -10,8 +11,8 @@ interface PieChartProps {
 }
 
 /**
-  * A piechart component that uses SVG and can render an arbitrary number of segments.
-  */
+ * A piechart component that uses SVG and can render an arbitrary number of segments.
+ */
 function PieChart(props: PieChartProps) {
   // dynamically get the total number of items in the data to calculate percentages
   const [total, setTotal] = useState(0);
@@ -42,13 +43,17 @@ function PieChart(props: PieChartProps) {
   }, [total, props.segments])
 
   return (
-    <svg className={styles.svg} viewBox="0 0 100 100">
-      {[...percentages.keys()]
-        .map((key: string, index: number) =>
-          <circle className={styles.circle} key={index} cx="50" cy="50" r={radius / 2}
-            fill="none" stroke={props.segments.has(key) ? props.segments.get(key)?.color : "none"}
-            strokeWidth={radius / 2} strokeDasharray={percentages.get(key)}></circle>)}
-    </svg>
+    <div>
+      {[...props.segments.keys()].map(segment =>
+        <div style={{color: props.segments.get(segment)?.color}}>{segment}</div>)}
+      <svg className={styles.svg} viewBox="0 0 100 100">
+        {[...percentages.keys()]
+          .map((key: string, index: number) =>
+            <circle className={styles.circle} key={index} cx="50" cy="50" r={radius / 2}
+                    fill="none" stroke={props.segments.has(key) ? props.segments.get(key)?.color : "none"}
+                    strokeWidth={radius / 2} strokeDasharray={percentages.get(key)}></circle>)}
+      </svg>
+    </div>
   )
 }
 

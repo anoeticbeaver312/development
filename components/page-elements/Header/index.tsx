@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 function Header() {
   return (
-    <Flex justifyContent="justifyBetween" styling={`shadow-1 ${styles.container}`}>
+    <Flex justifyContent="justifyBetween" classes={`shadow-1 ${styles.container}`}>
       <Logo />
       <HeaderLinks />
     </Flex>
