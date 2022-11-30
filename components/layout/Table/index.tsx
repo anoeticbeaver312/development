@@ -85,19 +85,23 @@ function Table(props: TableProps) {
         <tbody>
         {props.sortOn ? Array.from(props.data).sort(sortWorkers).map((row: Array<string>, i: number) => <tr key={i}>
           {row.map((datum: string, index: number) =>
-            <td key={i}>{props.headers[index].type === "text" ? datum :
-              <div className={styles.imageContainer}><Image alt="Profile Image" width={100} height={100} src={datum}/></div>} {index === row.length - 1 ?
+            <td key={i}>
+              {props.headers[index].type === "text" ? datum :
+              <div className={styles.imageContainer}><Image alt="Profile Image" width={100} height={100} src={datum}/>
+              </div>} {index === row.length - 1 ?
               <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
             </td>)}
         </tr>) : props.data.map((row: Array<string>, i: number) => <tr key={`row-${i}`}>
           {row.map((datum: string, index: number) =>
             <td key={`cell-${row.length * i + index}`}>{props.headers[index].type === "text" ? datum :
-              <div className={styles.imageContainer}><Image width={100} height={100} alt="Profile Image" src={datum}/></div>} {index === row.length - 1 ?
+              <div className={styles.imageContainer}><Image width={100} height={100} alt="Profile Image" src={datum}/>
+              </div>} {index === row.length - 1 ?
               <ri.RiDeleteBinLine className={styles.delete} onClick={() => props.handleDeleteRow(i)}/> : null}
             </td>)}
         </tr>)}
         {newRowOpen ?
-          <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td key={`new-row-${i}`}><input
+          <tr onKeyDown={event => addRow(event)}>{props.data.length > 0 ? props.data[0].map((_, i: number) => <td
+            key={`new-row-${i}`}><input
             value={newRow[i]} placeholder={`New ${props.headers[i].name}`} type="text"
             onChange={event => updateNewRow(event.target.value, i)}/></td>) : null}</tr> : null}
         </tbody>

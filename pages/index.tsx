@@ -42,9 +42,13 @@ export default function Workers() {
   }
 
   useEffect(() => {
-    const unique = Array.from(new Set(workers.map(worker => worker[3])))
-    setStatusSegments(new Map(unique.map((u, i) => [u, {num: workers.reduce((prev, curr) => (curr[3] === u ? 1 : 0) + prev, 0), color: colors[i]}])))
-  }, [colors, workers])
+    console.log("Filtered workers:", filteredWorkers)
+    const unique = Array.from(new Set(filteredWorkers.map(worker => worker[3])))
+    setStatusSegments(new Map(unique.map((u, i) => [u, {
+      num: workers.reduce((prev, curr) => (curr[3] === u ? 1 : 0) + prev, 0),
+      color: colors[i]
+    }])))
+  }, [filteredWorkers, colors, workers])
 
   useEffect(() => {
     setFilteredWorkers(workers);
@@ -82,8 +86,8 @@ export default function Workers() {
       <DefaultHead title="Worker Lists"/>
       <Header/>
       <Flex gap="gapLarge" padding>
-        <WorkerListMenu lists={["Master"]}/>
         <Flex direction="column" gap="gapLarge">
+          <h4>Search to Filter Workers in the Table and Status Piechart</h4>
           <Flex gap="gapMedium">
             <TextField label="Search" placeholder="Search..." defaultValue={filterValue}
                        handleOnChange={(newValue: string) => setFilterValue(newValue)}/>
@@ -101,7 +105,7 @@ export default function Workers() {
         </Flex>
         <Flex direction="column">
           <h3>Status Percentages</h3>
-          <PieChart metricName="Status" segments={statusSegments} />
+          <PieChart metricName="Status" segments={statusSegments}/>
         </Flex>
       </Flex>
     </div>
